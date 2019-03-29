@@ -31,4 +31,21 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const changes = req.body;
+  const { id } = req.params;
+  try {
+    const count = await actions
+      .getActions()
+      .where({ id })
+      .update(changes);
+    const action = await actions.getActions().where({ id });
+    return count
+      ? res.status(200).json(action)
+      : res.status(404).json({ message: "No action found for that ID" });
+  } catch (err) {
+    res.status(500).json({ message: "Internal Error", err });
+  }
+});
+
 module.exports = router;
