@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     const action = await actions.getActions();
     res.status(200).json(action);
   } catch (err) {
-    res.status(500).json({ message: "Internal Error", err });
+    res.status(500).json({ message: `Internal Error, ${err}` });
   }
 });
 
@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "No Action found by that ID" });
     }
   } catch (err) {
-    res.status(500).json({ message: "Internal Error", err });
+    res.status(500).json({ message: `Internal Error, ${err}` });
   }
 });
 
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
       res.status(201).json(act);
     }
   } catch (err) {
-    res.status(500).json({ message: "Internal Error", err });
+    res.status(500).json({ message: `Internal Error, ${err}` });
   }
 });
 
@@ -70,7 +70,7 @@ router.put("/:id", async (req, res) => {
       ? res.status(200).json(action)
       : res.status(404).json({ message: "No action found for that ID" });
   } catch (err) {
-    res.status(500).json({ message: "Internal Error", err });
+    res.status(500).json({ message: `Internal Error, ${err}` });
   }
 });
 
@@ -86,7 +86,7 @@ router.delete("/:id", async (req, res) => {
       ? res.status(200).json(count)
       : res.status(404).json({ message: "No Action found to delete at ID" });
   } catch (err) {
-    res.status(500).json({ message: "Internal Error", err });
+    res.status(500).json({ message: `Internal Error, ${err}` });
   }
 });
 
