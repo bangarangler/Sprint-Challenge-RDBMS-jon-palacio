@@ -51,4 +51,21 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const changes = req.body;
+  const { id } = req.params;
+  try {
+    const count = await projects
+      .getProjects()
+      .where({ id })
+      .update(changes);
+    const project = await projects.getProjects().where({ id });
+    return count
+      ? res.status(200).json(project)
+      : res.status(404).json({ message: "Project not found for that ID" });
+  } catch (err) {
+    res.status(500).json({ message: "Internal Error", err });
+  }
+});
+
 module.exports = router;
