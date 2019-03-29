@@ -7,6 +7,7 @@ const projects = require("./projects-model.js");
 const db = knex(knexConfig.development);
 const router = express.Router();
 
+// GET ALL PROJECTS
 router.get("/", async (req, res) => {
   try {
     const project = await projects.getProjects();
@@ -16,6 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET PROJECT BY ID  LIST PROJECTS AND ACTIONS FOR ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -36,6 +38,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// ADD PROJECT
 router.post("/", async (req, res) => {
   try {
     const { name, description, complete } = req.body;
@@ -51,6 +54,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// UPDATE PROJECT
 router.put("/:id", async (req, res) => {
   const changes = req.body;
   const { id } = req.params;
@@ -68,6 +72,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE PROJECT
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {

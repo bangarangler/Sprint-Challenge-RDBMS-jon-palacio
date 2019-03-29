@@ -7,6 +7,7 @@ const actions = require("./actions-model.js");
 const db = knex(knexConfig.development);
 const router = express.Router();
 
+// GET ALL ACTIONS
 router.get("/", async (req, res) => {
   try {
     const action = await actions.getActions();
@@ -16,6 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET ACTION BY ID
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -30,6 +32,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// ADD ACTION
 router.post("/", async (req, res) => {
   try {
     const { description, notes, complete, project_id } = req.body;
@@ -45,6 +48,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// UPDATE ACTION
 router.put("/:id", async (req, res) => {
   const changes = req.body;
   const { id } = req.params;
@@ -62,6 +66,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// DELETE ACTION
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -76,4 +81,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: "Internal Error", err });
   }
 });
+
 module.exports = router;
