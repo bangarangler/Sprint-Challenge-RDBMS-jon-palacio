@@ -21,8 +21,16 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const action = await actions.getActions(id).where({ id });
+    const action = await actions
+      .getActions(id)
+      .where({ id })
+      .first();
+    console.log(action);
     if (action) {
+      action.complete === 0
+        ? (action.complete = false)
+        : (action.complete = true);
+      console.log(action);
       res.status(200).json(action);
     } else {
       res.status(404).json({ message: "No Action found by that ID" });
