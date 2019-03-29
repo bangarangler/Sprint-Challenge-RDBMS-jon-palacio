@@ -16,6 +16,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const action = await actions.getActions(id).where({ id });
+    if (action) {
+      res.status(200).json(action);
+    } else {
+      res.status(404).json({ message: "No Action found by that ID" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Internal Error", err });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const { description, notes, complete, project_id } = req.body;
