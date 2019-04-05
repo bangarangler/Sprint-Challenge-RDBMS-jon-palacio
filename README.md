@@ -31,11 +31,18 @@ This will be akin to the Web API that you built in the last sprint, only this ti
 ## Self-Study/Essay Questions
 
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
-
+Relational data
 1. Explain the difference between `RDBMS` and `SQL`.
+a relational database management system is the software wich manages storage,
+querying, updating, etc.  SQL is how we interface or communicate with the
+system.
 1. Why do tables need a `primary key`?
+we need a primary key for every table to uniquely identifiiy all of our data
 1. What is the name given to a table column that references the primary key on another table.
+foreign key
 1. What do we need in order to have a _many to many_ relationship between two tables.
+a third table. as a many to many is just a one to many on one side and a many to
+one on the other side as i understood it ; )
 
 ## Project Set Up
 
